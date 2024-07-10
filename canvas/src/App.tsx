@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.tsx
+import React, { useRef } from "react";
+import CanvasComponent from "./components/Canvas";
+import ActionBar from "./components/Bar";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const canvasRef = useRef<any>(null); // Ajusta el tipo según sea necesario
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className=" w-full h-screen flex justify-center items-center">
+      <ActionBar canvasRef={canvasRef} />
+      <CanvasComponent canvasRef={canvasRef} />
+    </div>
+  );
+};
+
+export default App;
+
+/* import "./App.css";
+import React from "react";
+import CanvasDraw from "react-canvas-draw";
+import Canvas from "./components/Canvas"
+import Bar from "./components/Bar";
+import { useStore } from "./store/store";
+
+type CanvasDrawType = CanvasDraw & {
+  clear: () => void;
+};
+
+function App() {
+
+  const { brushRadius, brushColor } = useStore();
+
+  return (
+    <div className=" w-full h-screen flex justify-center items-center">
+      <Bar></Bar>
+      <button onClick={clear}>Clear</button>
+      <button onClick={undo}>Ctrl + Z</button>
+
+      <CanvasDraw
+        className="border border-double border-black"
+        ref={canvasRef}
+        brushColor={brushColor}
+        brushRadius={brushRadius}
+        canvasWidth={window.innerWidth}
+        canvasHeight={window.innerHeight}
+        hideGrid={true}
+        lazyRadius={0}
+      ></CanvasDraw>
+    </div>
+  );
 }
 
-export default App
+export default App;
+ */
